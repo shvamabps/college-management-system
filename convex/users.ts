@@ -18,7 +18,7 @@ export const createUser = mutation({
     } else {
       const newUser = await ctx.db.insert("users", {
         name: identity?.name as string,
-        email: identity?.email as string,
+        email: identity?.email?.toLowerCase() as string,
         isEmailVerified: identity?.emailVerified as boolean,
         clerkUserId: identity?.subject as string,
         avatarUrl: identity?.pictureUrl as string,

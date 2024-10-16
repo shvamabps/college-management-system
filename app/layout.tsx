@@ -2,17 +2,17 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
-import { Fira_Code } from "next/font/google";
+import { Comic_Neue } from "next/font/google";
 
 import Navbar from "@/components/navbar";
 import { Toaster } from "@/components/ui/toaster";
 import { ConvexClientProvider } from "./ConvexClientProvider";
 import "./globals.css";
 
-const firaCode = Fira_Code({
+const firaCode = Comic_Neue({
   subsets: ["latin"],
-  weight: ["500"],
   variable: "--fira-code",
+  weight: "400",
 });
 
 export const metadata: Metadata = {

@@ -1,4 +1,4 @@
-import { v } from "convex/values";
+import { ConvexError, v } from "convex/values";
 import { Id } from "./_generated/dataModel";
 import { mutation, query } from "./_generated/server";
 
@@ -15,6 +15,17 @@ export const registerCollege = mutation({
 
     if (!user) {
       throw new Error("Login to register college.");
+    }
+
+    const getCollege = await ctx.db
+      .query("colleges")
+      .withIndex("by_college_name", (q) =>
+        q.eq("collegeName", args.collegeName as string)
+      )
+      .unique();
+
+    if (getCollege?.collegeName) {
+      throw new ConvexError("College already exists.");
     }
 
     const getUser = await ctx.db
@@ -39,7 +50,7 @@ export const getColleges = query({
     const user = await ctx.auth.getUserIdentity();
 
     if (!user) {
-      throw new Error("Login to view colleges.");
+      throw new ConvexError("Login to view colleges.");
     }
 
     const getUser = await ctx.db
