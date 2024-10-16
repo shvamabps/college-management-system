@@ -1,6 +1,6 @@
 "use client";
 
-import Dashboard from "@/components/dasshboard";
+import Dashboard from "@/components/dashboard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { api } from "@/convex/_generated/api";
